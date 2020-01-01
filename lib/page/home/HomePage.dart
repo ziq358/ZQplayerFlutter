@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:zqplayerflutter/common/widgets/LoadingWidget.dart';
+import 'package:zqplayerflutter/utils/NetUtil.dart';
 
 class HomePage extends StatefulWidget {
   HomePage({Key key}) : super(key: key);
@@ -9,10 +10,23 @@ class HomePage extends StatefulWidget {
 }
 
 class _PageState extends State<HomePage> {
+  
+  @override
+  void initState() {
+    // TODO: implement initState
+    NetUtil.get("/live/list", {"offset":0,"limit":20,"game_type":"ow"}).then((res){
+      print("home ::::  ");
+      print(res);
+    }).catchError((e) {
+      print(e);
+    });
+    super.initState();
+  }
+  
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      body: LoadingWidget.create(_getBody()),
+      body: _getBody(),
     );
   }
 
