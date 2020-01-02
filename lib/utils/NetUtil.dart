@@ -1,6 +1,5 @@
-import 'dart:convert' as Convert;
-
 import 'package:dio/dio.dart';
+import 'package:zqplayerflutter/common/model/base_response.dart';
 import 'package:zqplayerflutter/config/net/NetConfig.dart';
 
 class NetUtil {
@@ -17,7 +16,8 @@ class NetUtil {
     return dio;
   }
 
-  static Future<Map> _request(String method, String url, {data}) async {
+  static Future<BaseResponse> _request(String method, String url,
+      {data}) async {
     data = data ?? {};
     print('网络请求参数：');
     print(method);
@@ -26,13 +26,14 @@ class NetUtil {
     var response = await getDioInstance().request(url, data: data, options: new Options(method:method));
     print('网络返回结果：');
     print(response);
-    var res = response.data;
-    return res;
+    return BaseResponse.fromJson(response.data);
   }
 
   /// get
-  static Future<Map> get(url, data) => _request("post", url, data: data);
+  static Future<BaseResponse> get(url, data) =>
+      _request("post", url, data: data);
 
   /// post
-  static Future<Map> post(url, data) => _request( "post", url, data: data);
+  static Future<BaseResponse> post(url, data) =>
+      _request("post", url, data: data);
 }

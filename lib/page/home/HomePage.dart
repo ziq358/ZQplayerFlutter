@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:zqplayerflutter/common/widgets/LoadingWidget.dart';
+import 'package:zqplayerflutter/page/home/model/live_item.dart';
 import 'package:zqplayerflutter/utils/NetUtil.dart';
 
 class HomePage extends StatefulWidget {
@@ -14,9 +14,11 @@ class _PageState extends State<HomePage> {
   @override
   void initState() {
     // TODO: implement initState
-    NetUtil.get("/live/list", {"offset":0,"limit":20,"game_type":"ow"}).then((res){
+    NetUtil.post("/live/list", {"offset": 0, "limit": 20, "game_type": "ow"})
+        .then((response) {
       print("home ::::  ");
-      print(res);
+      List<LiveItem> list = getLiveItemList(response.data);
+      print(list);
     }).catchError((e) {
       print(e);
     });
