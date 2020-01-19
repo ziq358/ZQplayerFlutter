@@ -1,5 +1,5 @@
-import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
+import 'package:zqplayerflutter/common/widgets/home/LiveCard.dart';
 import 'package:zqplayerflutter/page/home/model/live_item.dart';
 import 'package:zqplayerflutter/utils/NetUtil.dart';
 
@@ -15,7 +15,7 @@ class _PageState extends State<HomePage> {
   @override
   void initState() {
     // TODO: implement initState
-    NetUtil.post("/live/list", {"offset": 0, "limit": 20, "game_type": "ow"})
+    NetUtil.post("/live/list", {"offset": 0, "limit": 40, "game_type": "ow"})
         .then((response) {
       setState(() {
         list = getLiveItemList(response.data);
@@ -26,31 +26,29 @@ class _PageState extends State<HomePage> {
     super.initState();
   }
 
+  List<LiveItem> list = List();
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      body: SafeArea(child: _getBody()), //
-    );
-  }
-
-  List<LiveItem> list = List();
-
-  Widget _getBody() {
-    return new ListView.builder(
-      itemBuilder: (BuildContext context, int index) {
-        return _getLiveItem(list[index]);
-      },
-      itemCount: list.length,
-    );
-  }
-
-  Widget _getLiveItem(LiveItem item) {
-    return Padding(padding: EdgeInsets.all(10.0),
-      child: Column(children: <Widget>[
-//        Image.network(item.liveImg),
-        new CachedNetworkImage(imageUrl: item.liveImg),
-        Text("${item.liveTitle}")
-      ],),
+      body: SafeArea(
+          child: GridView.builder(
+              gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
+                //横轴元素个数
+                  crossAxisCount: 2,
+                  //纵轴间距
+                  mainAxisSpacing: 0.0,
+                  //横轴间距
+                  crossAxisSpacing: 0.0,
+                  //子组件宽高长度比例
+                  childAspectRatio: 4 / 3
+              ),
+              itemCount: list.length,
+              itemBuilder: (BuildContext context, int index) {
+                return LiveCard(list[index]);
+              }
+          )
+      ), //
     );
   }
 
