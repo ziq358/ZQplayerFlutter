@@ -12,7 +12,7 @@ class MyApp extends StatelessWidget {
         primarySwatch: Colors.blue,
       ),
 //      home: MainBottomTabPage(),
-//      initialRoute: "/home",
+      initialRoute: '/main',
       routes: routes,
     );
   }

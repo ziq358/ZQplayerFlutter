@@ -1,4 +1,5 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
     package="zq.zqplayer.zqplayerflutter">
 
     <uses-permission android:name="android.permission.INTERNET" />
@@ -10,7 +11,8 @@
     <application
         android:name="io.flutter.app.FlutterApplication"
         android:label="zqplayerflutter"
-        android:icon="@mipmap/ic_launcher">
+        android:icon="@mipmap/ic_launcher"
+        tools:ignore="GoogleAppIndexingWarning">
         <activity
             android:name=".MainActivity"
             android:launchMode="singleTop"
@@ -30,5 +32,9 @@
                 <category android:name="android.intent.category.LAUNCHER"/>
             </intent-filter>
         </activity>
+        <activity android:name=".test.TestActivity" />
+        <activity
+            android:name=".SettingActivity"
+            android:theme="@android:style/Theme.Light.NoTitleBar" />
     </application>
 </manifest>

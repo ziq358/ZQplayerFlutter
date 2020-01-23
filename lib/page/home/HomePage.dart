@@ -1,10 +1,11 @@
 import 'package:flutter/material.dart';
+import 'package:zqplayerflutter/common/model/home/live_item.dart';
 import 'package:zqplayerflutter/common/widgets/home/LiveCard.dart';
-import 'package:zqplayerflutter/page/home/model/live_item.dart';
 import 'package:zqplayerflutter/utils/NetUtil.dart';
 
 class HomePage extends StatefulWidget {
   HomePage({Key key}) : super(key: key);
+
 
   @override
   _PageState createState() => _PageState();
@@ -15,6 +16,7 @@ class _PageState extends State<HomePage> {
   @override
   void initState() {
     // TODO: implement initState
+    print("home page initstate");
     NetUtil.post("/live/list", {"offset": 0, "limit": 40, "game_type": "ow"})
         .then((response) {
       setState(() {
@@ -45,7 +47,9 @@ class _PageState extends State<HomePage> {
               ),
               itemCount: list.length,
               itemBuilder: (BuildContext context, int index) {
-                return LiveCard(list[index]);
+                return LiveCard(list[index], () {
+                  print("tab");
+                });
               }
           )
       ), //
