@@ -33,6 +33,7 @@
             </intent-filter>
         </activity>
         <activity android:name=".test.TestActivity" />
+        <activity android:name=".LiveActivity" />
         <activity
             android:name=".SettingActivity"
             android:theme="@android:style/Theme.Light.NoTitleBar" />

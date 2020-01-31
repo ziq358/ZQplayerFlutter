@@ -243,7 +243,11 @@ class _MineRootState extends State<MinePage> {
 
   onSettingTap() async {
     try {
-      final String result = await platform.invokeMethod('openSettingPage');
+      final String result = await platform.invokeMethod(
+          'openSettingPage', <String, dynamic>{
+        'title': "title111",
+        'url': "url222",
+      });
       print(result);
     } on PlatformException catch (e) {}
   }

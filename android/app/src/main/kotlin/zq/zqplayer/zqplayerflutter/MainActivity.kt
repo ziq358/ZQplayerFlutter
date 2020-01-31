@@ -24,7 +24,17 @@ class MainActivity: FlutterActivity() {
             when (call.method) {
                 "openSettingPage" -> {
                     startActivity(Intent(this@MainActivity, SettingActivity::class.java))
+                    var title: String? = call.argument("title");
+                    var url: String? = call.argument("url");
+                    println(title);
+                    println(url);
                     result.success("打开settingPage")
+                }
+                "openLivePage" -> {
+                    var title: String? = call.argument("title");
+                    var url: String? = call.argument("url");
+                    LiveActivity.openVideo(this@MainActivity, url!!, title!!)
+                    result.success("打开livePage")
                 }
                 else -> {
                     result.notImplemented()

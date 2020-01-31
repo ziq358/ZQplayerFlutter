@@ -13,7 +13,7 @@ class LiveCard extends StatelessWidget {
   Widget build(BuildContext context) {
     return GestureDetector(
       onTap: () {
-        onTap();
+        onTap(this.model);
       },
       child: Container(
           child: Padding(
