@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:zqplayerflutter/common/model/home/live_item.dart';
 import 'package:zqplayerflutter/common/widgets/home/LiveCard.dart';
+import 'package:zqplayerflutter/page/live/LivePage.dart';
 import 'package:zqplayerflutter/utils/NetUtil.dart';
 
 class HomePage extends StatefulWidget {
@@ -70,14 +71,20 @@ class _PageState extends State<HomePage> {
       List stream = response.data['stream_list'];
       if (stream != null && stream.length > 0) {
         String url = stream[0]['url'];
-        try {
-          final String result = await platform.invokeMethod(
-              'openLivePage', <String, dynamic>{
-            'title': title,
-            'url': url,
-          });
-          print(result);
-        } on PlatformException catch (e) {}
+        Navigator.of(context).push(MaterialPageRoute(
+            fullscreenDialog: true,
+            builder: (context) {
+              return LivePage(title, url);
+            }));
+
+//        try {
+//          final String result = await platform.invokeMethod(
+//              'openLivePage', <String, dynamic>{
+//            'title': title,
+//            'url': url,
+//          });
+//          print(result);
+//        } on PlatformException catch (e) {}
       }
     }).catchError((e) {
       print(e);
