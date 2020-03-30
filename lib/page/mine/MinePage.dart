@@ -2,7 +2,9 @@ import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/rendering.dart';
 import 'package:flutter/services.dart';
+import 'package:zqplayerflutter/channel/ChannelUtil.dart';
 import 'package:zqplayerflutter/utils/ColorUtil.dart';
+
 
 const avatar_test = "http://a.hiphotos.baidu.com/zhidao/pic/item/5243fbf2b21193131848738461380cd791238dff.jpg";
 class MinePage extends StatefulWidget {
@@ -239,17 +241,6 @@ class _MineRootState extends State<MinePage> {
           )
       ),
     );
-  }
-
-  onSettingTap() async {
-    try {
-      final String result = await platform.invokeMethod(
-          'openSettingPage', <String, dynamic>{
-        'title': "title111",
-        'url': "url222",
-      });
-      print(result);
-    } on PlatformException catch (e) {}
   }
 
 }

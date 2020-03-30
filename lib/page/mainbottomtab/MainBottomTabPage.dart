@@ -13,7 +13,7 @@ class MainBottomTabPage extends StatefulWidget {
 }
 
 class _PageState extends State<MainBottomTabPage> {
-  int currentIndex;
+  int currentIndex = 0;
 
   final pages = [
     HomePage(),
@@ -27,7 +27,6 @@ class _PageState extends State<MainBottomTabPage> {
   void initState() {
     // TODO: implement initState
     super.initState();
-    currentIndex = 0;
   }
 
   @override

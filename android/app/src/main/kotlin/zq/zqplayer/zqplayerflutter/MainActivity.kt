@@ -1,47 +1,39 @@
 package zq.zqplayer.zqplayerflutter
 
-import android.content.Context
-import android.content.ContextWrapper
-import android.content.Intent
-import android.content.IntentFilter
-import android.os.BatteryManager
-import android.os.Build.VERSION
-import android.os.Build.VERSION_CODES
+import android.graphics.Color
+import android.os.Build
 import android.os.Bundle
-import android.util.Log
-import io.flutter.app.FlutterActivity
-import io.flutter.plugin.common.MethodChannel
+import android.support.annotation.NonNull
+import android.view.View
+import android.view.WindowManager
+import com.gdinke.alstore.util.ChannelUtil
+import io.flutter.embedding.android.FlutterActivity
+import io.flutter.embedding.engine.FlutterEngine
 import io.flutter.plugins.GeneratedPluginRegistrant
-import zq.zqplayer.zqplayerflutter.view.PlatformVideoViewFactory
 
 
 class MainActivity: FlutterActivity() {
+    var channelUtil: ChannelUtil? = null
+
+    override fun configureFlutterEngine(@NonNull flutterEngine: FlutterEngine) {
+        GeneratedPluginRegistrant.registerWith(flutterEngine)
+    }
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        GeneratedPluginRegistrant.registerWith(this)
-        PlatformVideoViewFactory.FluttertoAndroidVideoViewPlugin.registerWith(this)
-        var methodChannel = MethodChannel(flutterView, "flutter/main")
-        methodChannel.setMethodCallHandler { call, result ->
-            when (call.method) {
-                "openSettingPage" -> {
-                    startActivity(Intent(this@MainActivity, SettingActivity::class.java))
-                    var title: String? = call.argument("title");
-                    var url: String? = call.argument("url");
-                    println(title);
-                    println(url);
-                    result.success("打开settingPage")
-                }
-                "openLivePage" -> {
-                    var title: String? = call.argument("title");
-                    var url: String? = call.argument("url");
-                    LiveActivity.openVideo(this@MainActivity, url!!, title!!)
-                    result.success("打开livePage")
-                }
-                else -> {
-                    result.notImplemented()
-                }
-            }
+//        setStatusBarFullTransparent()
+        channelUtil = ChannelUtil(context.applicationContext, flutterEngine!!)
+    }
+
+    private fun setStatusBarFullTransparent() {
+        if (Build.VERSION.SDK_INT >= 21) {//21表示5.0
+            val window = window
+            window.clearFlags(WindowManager.LayoutParams.FLAG_TRANSLUCENT_STATUS)
+            window.decorView.systemUiVisibility = View.SYSTEM_UI_FLAG_LAYOUT_FULLSCREEN or View.SYSTEM_UI_FLAG_LAYOUT_STABLE
+            window.addFlags(WindowManager.LayoutParams.FLAG_DRAWS_SYSTEM_BAR_BACKGROUNDS)
+            window.statusBarColor = Color.TRANSPARENT
+        } else if (Build.VERSION.SDK_INT >= 19) {//19表示4.4
+            window.addFlags(WindowManager.LayoutParams.FLAG_TRANSLUCENT_STATUS)
         }
     }
 
