@@ -13,7 +13,8 @@ class MainBottomTabPage extends StatefulWidget {
 }
 
 class _PageState extends State<MainBottomTabPage> {
-  int currentIndex = 0;
+  int _currentIndex = 0;
+  PageController _pageController = new PageController();
 
   final pages = [
     HomePage(),
@@ -22,35 +23,6 @@ class _PageState extends State<MainBottomTabPage> {
     DiscoveryPage(),
     MinePage()
   ];
-
-  @override
-  void initState() {
-    // TODO: implement initState
-    super.initState();
-  }
-
-  @override
-  Widget build(BuildContext context) {
-    return Scaffold(
-      bottomNavigationBar: BottomNavigationBar(
-        items: bottomNavItems,
-        currentIndex: currentIndex,
-        type: BottomNavigationBarType.shifting,
-        onTap: (index) {
-          _changePage(index);
-        },
-      ),
-      body: pages[currentIndex],
-    );
-  }
-
-  void _changePage(int index) {
-    if (index != currentIndex) {
-      setState(() {
-        currentIndex = index;
-      });
-    }
-  }
 
   final List<BottomNavigationBarItem> bottomNavItems = [
     BottomNavigationBarItem(
@@ -79,4 +51,38 @@ class _PageState extends State<MainBottomTabPage> {
       title: Text("我的"),
     ),
   ];
+
+  @override
+  void initState() {
+    // TODO: implement initState
+    super.initState();
+  }
+
+  @override
+  Widget build(BuildContext context) {
+    return Scaffold(
+      bottomNavigationBar: BottomNavigationBar(
+        items: bottomNavItems,
+        currentIndex: _currentIndex,
+        type: BottomNavigationBarType.shifting,
+        onTap: (index) {
+          if (index != _currentIndex) {
+            _pageController.jumpToPage(index);
+          }
+        },
+      ),
+      body: PageView.builder(
+        controller: _pageController,
+        itemBuilder: (context, index) => pages[index],
+        onPageChanged: (index) {
+          if (index != _currentIndex) {
+            setState(() {
+              _currentIndex = index;
+            });
+          }
+        },
+      ),
+    );
+  }
+
 }

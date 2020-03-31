@@ -1,7 +1,6 @@
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/rendering.dart';
-import 'package:flutter/services.dart';
 import 'package:zqplayerflutter/channel/ChannelUtil.dart';
 import 'package:zqplayerflutter/utils/ColorUtil.dart';
 
@@ -12,8 +11,17 @@ class MinePage extends StatefulWidget {
   _MineRootState createState() => _MineRootState();
 }
 
-class _MineRootState extends State<MinePage> {
-  static const platform = const MethodChannel('flutter/main');
+class _MineRootState extends State<MinePage>
+    with AutomaticKeepAliveClientMixin {
+
+  @override
+  bool get wantKeepAlive => true;
+
+  @override
+  void initState() {
+    print("MinePage init");
+    super.initState();
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -242,5 +250,6 @@ class _MineRootState extends State<MinePage> {
       ),
     );
   }
+
 
 }

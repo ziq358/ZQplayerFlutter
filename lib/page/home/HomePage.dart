@@ -15,7 +15,10 @@ class HomePage extends StatefulWidget {
   _PageState createState() => _PageState();
 }
 
-class _PageState extends State<HomePage> {
+class _PageState extends State<HomePage> with AutomaticKeepAliveClientMixin {
+
+  @override
+  bool get wantKeepAlive => true;
 
   List<LiveItem> list = List();
   bool isLoading = true;
