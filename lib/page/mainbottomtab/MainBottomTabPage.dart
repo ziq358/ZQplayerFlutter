@@ -73,6 +73,7 @@ class _PageState extends State<MainBottomTabPage> {
       ),
       body: PageView.builder(
         controller: _pageController,
+        physics: NeverScrollableScrollPhysics(), //禁止页面左右滑动切换
         itemBuilder: (context, index) => pages[index],
         onPageChanged: (index) {
           if (index != _currentIndex) {
