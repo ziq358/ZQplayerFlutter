@@ -100,6 +100,8 @@ class _SandableState extends State<Sandable> with TickerProviderStateMixin {
 
   // 重叠的分离图层
   List<Widget> layers = [];
+  List<Widget> tempImages = [];
+
 
   // key of child
   GlobalKey _globalKey = GlobalKey();
@@ -114,20 +116,25 @@ class _SandableState extends State<Sandable> with TickerProviderStateMixin {
 
   @override
   Widget build(BuildContext context) {
-    return Stack(
+    return Column(
       children: <Widget>[
-        ...layers,
-        GestureDetector(
-          onTap: () {
-            blow();
-          },
-          child: _mainController.isAnimating
-              ? Container()
-              : RepaintBoundary(
-                  key: _globalKey,
-                  child: widget.child,
-                ),
+        Stack(
+          children: <Widget>[
+            ...layers,
+            GestureDetector(
+              onTap: () {
+                blow();
+              },
+              child: _mainController.isAnimating
+                  ? Container()
+                  : RepaintBoundary(
+                key: _globalKey,
+                child: widget.child,
+              ),
+            ),
+          ],
         ),
+        ...tempImages,
       ],
     );
   }
@@ -148,6 +155,10 @@ class _SandableState extends State<Sandable> with TickerProviderStateMixin {
     separatePixels(blankLayers, fullImage, width, height);
 
     // 将图层转换为Widget
+    tempImages = blankLayers.map((layer) {
+      Uint8List data = Uint8List.fromList(image.encodePng(layer));
+      return Image.memory(data);
+    }).toList();
     layers = blankLayers.map((layer) => imageToWidget(layer)).toList();
 
     // 刷新页面

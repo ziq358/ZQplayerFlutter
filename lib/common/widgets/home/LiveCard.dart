@@ -26,16 +26,7 @@ class LiveCard extends StatelessWidget {
                   child: new CachedNetworkImage(
                       fit: BoxFit.fill,
                       imageUrl: model.liveImg,
-                      placeholder: (context, url) =>
-                      new Image(
-                        image: AssetImage('images/black_arrow_right.png'),
-                        fit: BoxFit.cover,
                       ),
-                      errorWidget: (context, url, error) =>
-                      new Image(
-                        image: AssetImage('images/avatar_placeholder.png'),
-                        fit: BoxFit.cover,
-                      )),
                 ),
                 Text(
                   "${model.liveTitle}",
