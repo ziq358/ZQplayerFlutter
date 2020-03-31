@@ -9,4 +9,10 @@
             android:gravity="center"
             android:src="@mipmap/launch_image" />
     </item> -->
+    <item>
+        <!-- 图片 -->
+        <bitmap
+            android:gravity="center"
+            android:src="@mipmap/splash_logo" />
+    </item>
 </layer-list>
