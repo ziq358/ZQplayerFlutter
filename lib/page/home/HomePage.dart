@@ -10,13 +10,11 @@ import 'package:zqplayerflutter/utils/NetUtil.dart';
 class HomePage extends StatefulWidget {
   HomePage({Key key}) : super(key: key);
 
-
   @override
   _PageState createState() => _PageState();
 }
 
 class _PageState extends State<HomePage> with AutomaticKeepAliveClientMixin {
-
   @override
   bool get wantKeepAlive => true;
 
@@ -64,16 +62,13 @@ class _PageState extends State<HomePage> with AutomaticKeepAliveClientMixin {
                     //横轴间距
                     crossAxisSpacing: 0.0,
                     //子组件宽高长度比例
-                    childAspectRatio: 4 / 3
-                ),
+                    childAspectRatio: 4 / 3),
                 itemCount: list.length,
                 itemBuilder: (BuildContext context, int index) {
                   return LiveCard(list[index], (model) {
                     onLiveTap(model);
                   });
-                }
-            )
-        ),
+                })),
       ), //
     );
   }
@@ -112,5 +107,4 @@ class _PageState extends State<HomePage> with AutomaticKeepAliveClientMixin {
       print(e);
     });
   }
-
 }

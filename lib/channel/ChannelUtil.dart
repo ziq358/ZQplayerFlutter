@@ -12,8 +12,8 @@ onBackPressed() async {
 
 onSettingTap() async {
   try {
-    final String result = await platform.invokeMethod(
-        'openSettingPage', <String, dynamic>{
+    final String result =
+    await platform.invokeMethod('openSettingPage', <String, dynamic>{
       'title': "title111",
       'url': "url222",
     });

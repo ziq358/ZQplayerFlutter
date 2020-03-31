@@ -85,5 +85,4 @@ class _PageState extends State<MainBottomTabPage> {
       ),
     );
   }
-
 }

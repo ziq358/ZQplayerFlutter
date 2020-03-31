@@ -3,7 +3,10 @@ import 'package:flutter/material.dart';
 
 class LoadingWidget {
   static Widget create({@required Widget child,
-    bool loading = true, Color bgColor, Color loadingBgColor, VoidCallback onTap}) {
+    bool loading = true,
+    Color bgColor,
+    Color loadingBgColor,
+    VoidCallback onTap}) {
     return Stack(
       children: <Widget>[
         child,

@@ -4,8 +4,9 @@ import 'package:zqplayerflutter/config/net/NetConfig.dart';
 
 class NetUtil {
   static Dio dio;
-  static Dio getDioInstance(){
-    if(dio == null){
+
+  static Dio getDioInstance() {
+    if (dio == null) {
       BaseOptions options = new BaseOptions(
         baseUrl: NetConfig.baseUrl,
         connectTimeout: NetConfig.connectTimeout,
@@ -23,7 +24,8 @@ class NetUtil {
     print(method);
     print(url);
     print(data);
-    var response = await getDioInstance().request(url, data: data, options: new Options(method:method));
+    var response = await getDioInstance()
+        .request(url, data: data, options: new Options(method: method));
     print('网络返回结果：');
     print(response);
     return BaseResponse.fromJson(response.data);

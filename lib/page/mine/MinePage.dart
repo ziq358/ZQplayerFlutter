@@ -4,8 +4,9 @@ import 'package:flutter/rendering.dart';
 import 'package:zqplayerflutter/channel/ChannelUtil.dart';
 import 'package:zqplayerflutter/utils/ColorUtil.dart';
 
+const avatar_test =
+    "http://a.hiphotos.baidu.com/zhidao/pic/item/5243fbf2b21193131848738461380cd791238dff.jpg";
 
-const avatar_test = "http://a.hiphotos.baidu.com/zhidao/pic/item/5243fbf2b21193131848738461380cd791238dff.jpg";
 class MinePage extends StatefulWidget {
   @override
   _MineRootState createState() => _MineRootState();
@@ -13,7 +14,6 @@ class MinePage extends StatefulWidget {
 
 class _MineRootState extends State<MinePage>
     with AutomaticKeepAliveClientMixin {
-
   @override
   bool get wantKeepAlive => true;
 
@@ -34,8 +34,7 @@ class _MineRootState extends State<MinePage>
                 padding: EdgeInsets.only(bottom: 47.5),
                 child: Container(
                   padding: EdgeInsets.only(bottom: 61),
-                  decoration: BoxDecoration(
-                      color: Colors.teal
+                  decoration: BoxDecoration(color: Colors.teal
 //                      image: new DecorationImage(
 //                        image: new AssetImage('images/mine_top_bg.png'),
 //                        fit: BoxFit.fill,
@@ -50,7 +49,8 @@ class _MineRootState extends State<MinePage>
                               Row(
                                 mainAxisAlignment: MainAxisAlignment.center,
                                 children: <Widget>[
-                                  Text("我的",
+                                  Text(
+                                    "我的",
                                     style: TextStyle(
                                       color: Colors.white,
                                       fontSize: 18.0,
@@ -59,30 +59,35 @@ class _MineRootState extends State<MinePage>
                                 ],
                               ),
                               userInfoItem(() {}),
-                              Column(children: <Widget>[
-                                Text("账户余额", style: TextStyle(
-                                  color: hexToColor("#FFB3AE"),
-                                  fontSize: 12.0,)),
-                                Text("¥0", style: TextStyle(
-                                  color: hexToColor("#FFFFFF"),
-                                  fontSize: 18.0,))
-                              ],)
+                              Column(
+                                children: <Widget>[
+                                  Text("账户余额",
+                                      style: TextStyle(
+                                        color: hexToColor("#FFB3AE"),
+                                        fontSize: 12.0,
+                                      )),
+                                  Text("¥0",
+                                      style: TextStyle(
+                                        color: hexToColor("#FFFFFF"),
+                                        fontSize: 18.0,
+                                      ))
+                                ],
+                              )
                             ],
-                          )
-                      )
-                  ),
-                )
-            ),
+                          ))),
+                )),
             Positioned(
                 left: 15,
                 right: 15,
                 bottom: 0,
                 child: Container(
                   height: 84,
-                  decoration: BoxDecoration(color: Colors.white,
+                  decoration: BoxDecoration(
+                      color: Colors.white,
                       borderRadius: BorderRadius.all(Radius.circular(10)),
                       boxShadow: <BoxShadow>[
-                        BoxShadow(color: Color.fromARGB(25, 0, 0, 0),
+                        BoxShadow(
+                            color: Color.fromARGB(25, 0, 0, 0),
                             spreadRadius: 1,
                             blurRadius: 2,
                             offset: Offset(0, 1.5))
@@ -120,10 +125,8 @@ class _MineRootState extends State<MinePage>
                           "我下单的", () {}),
                     ],
                   ),
-                )
-            )
-          ]
-          ),
+                ))
+          ]),
           Expanded(
               child: Container(
                 margin: EdgeInsets.only(top: 8),
@@ -135,9 +138,7 @@ class _MineRootState extends State<MinePage>
                     }),
                   ],
                 ),
-              )
-          )
-
+              ))
         ],
       ),
     );
@@ -170,26 +171,36 @@ class _MineRootState extends State<MinePage>
                     fit: BoxFit.cover,
                   )),
             ),
-            Expanded(child: Container(
+            Expanded(
+                child: Container(
               height: 56,
               padding: EdgeInsets.fromLTRB(24, 0, 0, 0),
-              child: Text("tianshang22", style: TextStyle(
-                color: Colors.white,
-                fontSize: 19.0,
-              ),),
+                  child: Text(
+                    "tianshang22",
+                    style: TextStyle(
+                      color: Colors.white,
+                      fontSize: 19.0,
+                    ),
+                  ),
             )),
-            Image(image: AssetImage('images/white_right_arrow.png'),
+            Image(
+              image: AssetImage('images/white_right_arrow.png'),
               width: 20.0,
-              height: 20.0,),
+              height: 20.0,
+            ),
           ],
         ),
-      ),);
+      ),
+    );
   }
 
-
-  Widget topMenuItem(double radiusTopLeft, double radiusTopRight,
-      double radiusBottomLeft, double radiusBottomRight,
-      IconData icon, String menuName, Function callback,) {
+  Widget topMenuItem(double radiusTopLeft,
+      double radiusTopRight,
+      double radiusBottomLeft,
+      double radiusBottomRight,
+      IconData icon,
+      String menuName,
+      Function callback,) {
     return Expanded(
         child: Material(
           color: Colors.white,
@@ -197,16 +208,14 @@ class _MineRootState extends State<MinePage>
               topLeft: Radius.circular(radiusTopLeft),
               topRight: Radius.circular(radiusTopRight),
               bottomLeft: Radius.circular(radiusBottomLeft),
-              bottomRight: Radius.circular(radiusBottomRight)
-          ),
+              bottomRight: Radius.circular(radiusBottomRight)),
           child: Ink(
             child: InkWell(
               borderRadius: BorderRadius.only(
                   topLeft: Radius.circular(radiusTopLeft),
                   topRight: Radius.circular(radiusTopRight),
                   bottomLeft: Radius.circular(radiusBottomLeft),
-                  bottomRight: Radius.circular(radiusBottomRight)
-              ),
+                  bottomRight: Radius.circular(radiusBottomRight)),
               onTap: () {
                 callback();
               },
@@ -214,18 +223,23 @@ class _MineRootState extends State<MinePage>
                 padding: EdgeInsets.only(top: 15),
                 child: Column(
                   children: <Widget>[
-                    Icon(icon, size: 30.0,),
-                    Padding(padding: EdgeInsets.only(top: 5), child:
-                    Text(menuName, style: TextStyle(
-                      color: hexToColor("#292929"), fontSize: 11.0,))
-                    )
+                    Icon(
+                      icon,
+                      size: 30.0,
+                    ),
+                    Padding(
+                        padding: EdgeInsets.only(top: 5),
+                        child: Text(menuName,
+                            style: TextStyle(
+                              color: hexToColor("#292929"),
+                              fontSize: 11.0,
+                            )))
                   ],
                 ),
               ),
             ),
           ),
-        )
-    );
+        ));
   }
 
   Widget bottomMenuItem(String menuName, Function callback) {
@@ -240,16 +254,19 @@ class _MineRootState extends State<MinePage>
           height: 50,
           child: Row(
             children: <Widget>[
-              Expanded(child: Text(menuName, style: TextStyle(
-                color: hexToColor("#292929"), fontSize: 14.0,))),
-              Image(image: AssetImage("images/black_arrow_right.png"),
+              Expanded(
+                  child: Text(menuName,
+                      style: TextStyle(
+                        color: hexToColor("#292929"),
+                        fontSize: 14.0,
+                      ))),
+              Image(
+                image: AssetImage("images/black_arrow_right.png"),
                 width: 10.0,
-                height: 10.0,),
+                height: 10.0,
+              ),
             ],
-          )
-      ),
+          )),
     );
   }
-
-
 }

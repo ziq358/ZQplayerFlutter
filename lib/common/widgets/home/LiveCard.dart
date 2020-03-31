@@ -43,8 +43,7 @@ class LiveCard extends StatelessWidget {
                 )
               ],
             ),
-          )
-      ),
+          )),
     );
   }
 }
