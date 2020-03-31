@@ -2,6 +2,7 @@ import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/rendering.dart';
 import 'package:zqplayerflutter/channel/ChannelUtil.dart';
+import 'package:zqplayerflutter/page/test/TestListPage.dart';
 import 'package:zqplayerflutter/utils/ColorUtil.dart';
 
 const avatar_test =
@@ -135,6 +136,12 @@ class _MineRootState extends State<MinePage>
                   children: <Widget>[
                     bottomMenuItem("设置", () {
                       onSettingTap();
+                    }),
+                    bottomMenuItem("test", () {
+                      Navigator.of(context).push(
+                          MaterialPageRoute(builder: (context) {
+                            return TestListPage();
+                          }));
                     }),
                   ],
                 ),
