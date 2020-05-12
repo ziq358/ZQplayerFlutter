@@ -1,12 +1,12 @@
 package zq.zqplayer.zqplayerflutter.view
 
 import android.content.Context
-import android.content.Intent
+import io.flutter.embedding.engine.FlutterEngine
 import io.flutter.plugin.common.BinaryMessenger
-import io.flutter.plugin.common.PluginRegistry
 import io.flutter.plugin.common.StandardMessageCodec
 import io.flutter.plugin.platform.PlatformView
 import io.flutter.plugin.platform.PlatformViewFactory
+
 
 /**
  *    author : wuyanqiang
@@ -31,11 +31,16 @@ class PlatformVideoViewFactory : PlatformViewFactory {
     class FluttertoAndroidVideoViewPlugin {
 
         companion object {
-            fun registerWith(registry: PluginRegistry): Unit {
-                val key: String? = FluttertoAndroidVideoViewPlugin::class.java.canonicalName
-                if (registry.hasPlugin(key)) return;
-                val registrar: PluginRegistry.Registrar = registry.registrarFor(key);
-                registrar.platformViewRegistry().registerViewFactory("zqvideoview", PlatformVideoViewFactory(registrar.messenger()));
+            fun registerWith(flutterEngine: FlutterEngine): Unit {
+                //兼容写法
+//                val key: String? = FluttertoAndroidVideoViewPlugin::class.java.canonicalName
+//                val shimPluginRegistry = ShimPluginRegistry(flutterEngine)
+//                if (shimPluginRegistry.hasPlugin(key)) return;
+//                val registrar: PluginRegistry.Registrar = shimPluginRegistry.registrarFor(key);
+//                registrar.platformViewRegistry().registerViewFactory("zqvideoview", PlatformVideoViewFactory(registrar.messenger()));
+                // 1.12 后写法
+                val registry = flutterEngine.platformViewsController.registry
+                registry.registerViewFactory("zqvideoview", PlatformVideoViewFactory(flutterEngine.dartExecutor))
             }
         }
     }

@@ -12,7 +12,8 @@
         android:name="io.flutter.app.FlutterApplication"
         android:label="zqplayerflutter"
         android:icon="@mipmap/ic_launcher"
-        tools:ignore="GoogleAppIndexingWarning">
+        android:debuggable="true"
+        tools:ignore="GoogleAppIndexingWarning,HardcodedDebugMode">
         <activity
             android:name=".MainActivity"
             android:launchMode="singleTop"

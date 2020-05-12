@@ -10,6 +10,7 @@ import com.gdinke.alstore.util.ChannelUtil
 import io.flutter.embedding.android.FlutterActivity
 import io.flutter.embedding.engine.FlutterEngine
 import io.flutter.plugins.GeneratedPluginRegistrant
+import zq.zqplayer.zqplayerflutter.view.PlatformVideoViewFactory
 
 
 class MainActivity: FlutterActivity() {
@@ -17,6 +18,7 @@ class MainActivity: FlutterActivity() {
 
     override fun configureFlutterEngine(@NonNull flutterEngine: FlutterEngine) {
         GeneratedPluginRegistrant.registerWith(flutterEngine)
+        PlatformVideoViewFactory.FluttertoAndroidVideoViewPlugin.registerWith(flutterEngine)
     }
 
     override fun onCreate(savedInstanceState: Bundle?) {

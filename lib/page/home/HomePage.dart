@@ -23,7 +23,7 @@ class _PageState extends State<HomePage> with AutomaticKeepAliveClientMixin {
 
   @override
   void initState() {
-    NetUtil.post("/live/list", {"offset": 0, "limit": 40, "game_type": "ow"})
+    NetUtil.post("/live/list", {"offset": 20, "limit": 60, "game_type": "lol"})
         .then((response) {
       if (mounted) {
         setState(() {
